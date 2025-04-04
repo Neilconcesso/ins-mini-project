@@ -1,26 +1,21 @@
-from cryptography.hazmat.primitives.asymmetric import dsa
 from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import padding
 
-def generate_signature(data: bytes):
-    """Signs the provided message using the DSA private key."""
-    try:
-        with open("dsa_private_key.pem", "rb") as priv_key_file:
-            private_key = serialization.load_pem_private_key(priv_key_file.read(), password=None)
+def sign_message(message: bytes):
+    with open("private_key.pem", "rb") as key_file:
+        private_key = serialization.load_pem_private_key(key_file.read(), password=None)
 
-        # Generate signature
-        digital_signature = private_key.sign(data, hashes.SHA256())
+    signature = private_key.sign(
+        message,
+        padding.PSS(
+            mgf=padding.MGF1(hashes.SHA256()),
+            salt_length=padding.PSS.MAX_LENGTH,
+        ),
+        hashes.SHA256()
+    )
 
-        # Save signature to a file
-        with open("signed_message.sig", "wb") as sig_file:
-            sig_file.write(digital_signature)
+    with open("signature.sig", "wb") as f:
+        f.write(signature)
 
-        print("✔ Message has been successfully signed.")
-        return digital_signature
-    except FileNotFoundError:
-        print("❌ Error: Private key file not found!")
-    except Exception as e:
-        print(f"❌ Signing failed: {e}")
-
-if __name__ == "__main__":
-    user_message = input("Enter text to be signed: ").encode()
-    generate_signature(user_message)
+    print("✔ Message signed successfully.")
+    print(f"Signature (hex): {signature.hex()}")  # For debugging
