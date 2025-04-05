@@ -1,35 +1,40 @@
 import certgen
 import sign
 import verify
+import os
 
 def dss_auth_system():
     while True:
-        print("\n=== Digital Signature System ===")
-        print("1) Generate Self-Signed Certificate")
-        print("2) Sign a Text Message")
-        print("3) Validate a Signature")
-        print("4) Exit the Program")
+        print("\n📜 ECC Certificate & Messaging System")
+        print("1. Generate CA Key Pair and Certificate")
+        print("2. Generate User Key Pair and Certificate")
+        print("3. Sign and Send Message")
+        print("4. View Certificate")
+        print("5. Verify Certificate")
+        print("6. Create and View Fake Certificate (Impersonation)")
+        print("7. Simulate Message Tampering Attack")
+        print("8. Exit")
+        choice = input("➡ Select an option (1-8): ").strip()
 
-        user_choice = input("Select an option (1-4): ").strip()
-
-        if user_choice == "1":
-            certgen.generate_self_signed_cert()
-        elif user_choice == "2":
-            message = input("Enter the message to be signed: ").strip().encode()
-            sign.sign_message(message)
-        elif user_choice == "3":
-            message = input("Enter the original message: ").strip().encode()
-            try:
-                with open("signature.sig", "rb") as sig_file:
-                    signature_data = sig_file.read()
-                verify.verify_signature(message, signature_data)
-            except FileNotFoundError:
-                print("❌ Signature file not found!")
-        elif user_choice == "4":
-            print("Exiting... Have a great day!")
+        if choice == "1":
+            certgen.generate_ca_certificate()
+        elif choice == "2":
+            certgen.generate_user_certificate()
+        elif choice == "3":
+            sign.sign_message()
+        elif choice == "4":
+            certgen.view_certificate()
+        elif choice == "5":
+            verify.verify_certificate()
+        elif choice == "6":
+            certgen.create_fake_certificate()
+        elif choice == "7":
+            verify.simulate_tampering()
+        elif choice == "8":
+            print("👋 Exiting... Have a secure day!")
             break
         else:
-            print("Invalid selection! Please choose a valid option.")
+            print("❌ Invalid selection!")
 
 if __name__ == "__main__":
     dss_auth_system()
