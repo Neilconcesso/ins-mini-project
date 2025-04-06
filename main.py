@@ -1,7 +1,6 @@
 import certgen
 import sign
 import verify
-import os
 
 def dss_auth_system():
     while True:
@@ -17,15 +16,15 @@ def dss_auth_system():
         choice = input("➡ Select an option (1-8): ").strip()
 
         if choice == "1":
-            certgen.generate_ca_certificate()
+            certgen.generate_ca_cert()
         elif choice == "2":
-            certgen.generate_user_certificate()
+            certgen.generate_user_cert()
         elif choice == "3":
-            sign.sign_message()
+            sign.sign_and_send_message()
         elif choice == "4":
             certgen.view_certificate()
         elif choice == "5":
-            verify.verify_certificate()
+            verify.verify_user_certificate()
         elif choice == "6":
             certgen.create_fake_certificate()
         elif choice == "7":
