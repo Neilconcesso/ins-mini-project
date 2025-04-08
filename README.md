@@ -1,66 +1,73 @@
-# ECC Certificate & Messaging System
-Overview
-The ECC Certificate & Messaging System is a secure communication application that leverages Elliptic Curve Cryptography (ECC) to manage digital certificates and secure messaging. This system allows users to generate key pairs, create and verify certificates, sign messages, and simulate various security scenarios.
+Digital Signature Signing
+This project is a Python-based simulation of a secure ECC (Elliptic Curve Cryptography) certificate and digital signature system. It enables users to generate and manage certificates, sign and verify messages, and simulate common cryptographic attacks for educational purposes.
 
-# Features
-Generate CA Key Pair and Certificate: Create a Certificate Authority (CA) key pair and self-signed certificate.
-Generate User Key Pair and Certificate: Generate a user-specific key pair and certificate signed by the CA.
-Sign and Send Message: Sign a message with the user's private key and send it securely.
-View Certificate: Display the details of a generated certificate.
-Verify Certificate: Check the validity of a certificate against the CA's public key.
-Create and View Fake Certificate: Simulate the creation of a fake certificate for educational purposes.
-Simulate Message Tampering Attack: Demonstrate how message integrity can be compromised.
-Exit: Safely exit the application.
-# Requirements
-Python 3.x
-Required libraries:
-cryptography
-pycryptodome
-You can install the required libraries using pip:
+Features
+✨ Generate CA Key Pair and Certificate
 
-```bash
-Run
-Copy code
-pip install cryptography pycryptodome
-```
+🔐 Generate User Key Pair and Certificate
+
+✉️ Sign and Send Secure Messages
+
+📄 View Existing Certificates
+
+🔍 Verify Certificates
+
+😈 Create Fake Certificate (Impersonation)
+
+⚡ Simulate Message Tampering Attack
+
+How It Works
+The project has three main components:
+
+certgen.py: Handles generation and management of certificates (CA and user).
+
+sign.py: Signs messages using the user's private key.
+
+verify.py: Verifies digital signatures and certificates. Also simulates attacks.
+
 Installation
 Clone the repository:
 
-```bash
-Run
-Copy code
-git clone https://github.com/yourusername/ecc-certificate-messaging-system.git
-cd ecc-certificate-messaging-system
-```
-Ensure you have the required libraries installed as mentioned above.
+git clone https://github.com/Neilconcesso/ins-mini-project.git
+cd ins-mini-project
+Install dependencies:
 
-Usage
-Run the program:
+pip install cryptography
+Running the System
+Make sure Python is installed. Then run:
 
-```bash
-Run
-Copy code
 python main.py
-```
+Follow the interactive menu to perform various cryptographic operations.
 
-Follow the on-screen prompts to use the various features of the system.
+Menu Options
+Generate CA Key Pair and Certificate
+Generates the Certificate Authority's key pair and self-signed certificate.
 
-# Example Workflow
-Generate a CA key pair and certificate.
-Generate a user key pair and certificate signed by the CA.
-Sign a message and send it.
-View the generated certificate.
-Verify the certificate's authenticity.
-Create a fake certificate and view its details.
-Simulate a message tampering attack to see how it affects message integrity.
-Exit the application.
-Code Structure
-certgen.py: Contains functions for generating certificates and viewing them.
-sign.py: Contains functions for signing messages and sending them.
-verify.py: Contains functions for verifying certificates and simulating tampering.
-Contributing
-Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+Generate User Key Pair and Certificate
+Issues a certificate signed by the CA for a user.
 
-# Acknowledgments
-Elliptic Curve Cryptography
-Cryptography Library Documentation
+Sign and Send Message
+Signs a message with the user's private key and stores it securely.
+
+View Certificate
+Displays the contents of existing certificates.
+
+Verify Certificate
+Verifies the authenticity of a user certificate against the CA's public key.
+
+Create and View Fake Certificate (Impersonation)
+Demonstrates a fake certificate creation for testing impersonation attacks.
+
+Simulate Message Tampering Attack
+Tamper with a signed message to demonstrate failure of signature verification.
+
+Exit
+Ends the program.
+
+
+Requirements
+Python 3.x
+
+cryptography library
+
+****
